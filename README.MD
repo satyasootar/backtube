@@ -37,3 +37,17 @@
 ## Step 10: Create Access and Refresh Tokens
    - Added user-defined methods in the User model for generating access and refresh tokens.
    - Added token-related keys in the `.env` file for secure access.
+
+## Step 11: Install Cloudinary and Multer Packages
+   - Installed `cloudinary` for media storage and `multer` for handling file uploads.
+
+## Step 12: Configure Cloudinary Upload
+   - Set up Cloudinary integration to handle media uploads from the server.
+   - Added Cloudinary credentials (e.g., `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET`) in the `.env` file for secure access.
+
+## Step 13: Configure Multer for Temporary Local Storage
+   - Set up Multer to temporarily save uploaded files on the local server.
+   - Created a `multer` configuration to specify the storage location and file naming conventions for temporary files before uploading to Cloudinary.
+   - Configured Multer to store files in a designated directory (e.g., `./public/temp`) with unique filenames to prevent overwriting.
+
+**The end of backend setup**
