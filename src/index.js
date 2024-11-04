@@ -10,8 +10,7 @@ dotenv.config({
 connectDB()
     .then(() => {
         app.listen(Port, () => {
-
-            console.log(`MongoDB connected sucessfully and listinig at port ${Port}`);
+        console.log(`MongoDB connected sucessfully and listinig at port ${Port}`);
         })
     })
     .catch((err) => {
