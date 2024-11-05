@@ -51,3 +51,12 @@
    - Configured Multer to store files in a designated directory (e.g., `./public/temp`) with unique filenames to prevent overwriting.
 
 **The end of backend setup**
+
+
+# Initiation of Routes and Controllers
+
+## Step 14: Define a Controller "RegisterUser"
+   - Define a controller function named `registerUser` that responds with a JSON message: "OK".
+
+## Step 15: Define Routes Using `Router` from `express`
+   - Set up routes using the `Router` feature from Express to handle requests related to user registration.
