@@ -2,12 +2,11 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiErrors } from '../utils/APIerrors.js';
 import { User } from '../models/user.model.js'
 import { uploadOnCloudinary } from '../utils/cloudinary.js'
-import { APIresponse } from '../utils/APIresponse'
+import { APIresponse } from '../utils/APIrespose.js'
 
 export const registerUser = asyncHandler(async(req, res)=>{
     //get user details from frontend
     const { fullName, userName, email, password } = req.body;
-    console.log("email: ", email);
 
     //validation — not empty
 
@@ -17,19 +16,21 @@ export const registerUser = asyncHandler(async(req, res)=>{
     }
     //check if user already exists: username, email
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or:[{ userName },{ email }]
     })
 
     if(existedUser){
         throw new ApiErrors(409, "User with email or username already exist");
     }
+ // Log files object
+
     //check for images, check for avatar
     const avatarLocalPath = req.files?.avatar[0]?.path;
     const coverImagePath = req.files?.coverImage[0]?.path;
 
     if(!avatarLocalPath){
-        throw new ApiErrors(400, "Avatar is required")
+        throw new ApiErrors(400, "avatar is required")
     }
     //upload them to cloudinary, avatar
     const avatar = await uploadOnCloudinary(avatarLocalPath)
@@ -51,7 +52,7 @@ export const registerUser = asyncHandler(async(req, res)=>{
     })
 
     //remove password and refresh token field from response
-    const createdUser = User.findOne(user._id).select( "-password -refreshToken" )
+    const createdUser = await User.findOne(user._id).select( "-password -refreshToken" )
 
     //check for user creation
     if(!createdUser){
@@ -61,6 +62,5 @@ export const registerUser = asyncHandler(async(req, res)=>{
     return res.status(201).json(
         new APIresponse(200, createdUser, "User registered sucessfully")
     )
-    
 }) 
  

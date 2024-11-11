@@ -60,3 +60,25 @@
 
 ## Step 15: Define Routes Using `Router` from `express`
    - Set up routes using the `Router` feature from Express to handle requests related to user registration.
+
+## Step 16: Build Out `registerUser` Controller
+
+1. **Import Required Modules**: Import necessary utilities and modules in the `user.controller.js` file, including functions for handling asynchronous requests, error handling, user model interaction, Cloudinary uploads, and standardized API responses.
+
+2. **Extract User Details**: Extract user details such as `fullName`, `userName`, `email`, and `password` from `req.body`.
+
+3. **Validate Required Fields**: Ensure all required fields are filled in by checking if any of them are empty. If any field is missing, throw an error.
+
+4. **Check for Existing User**: Check the database to see if a user already exists with the provided `userName` or `email`. If a user already exists, throw an error to prevent duplicate entries.
+
+5. **Validate Image Upload**: Confirm that the `avatar` image is provided in `req.files`. If the avatar is missing, throw an error as it is a required field for registration.
+
+6. **Upload Images to Cloudinary**: Upload the `avatar` and `coverImage` (if available) to Cloudinary. This step saves the images in the cloud storage and returns URLs for use in the user profile.
+
+7. **Create User in Database**: Use the user details, along with the Cloudinary URLs for the images, to create a new user entry in the database.
+
+8. **Retrieve Created User**: Fetch the newly created user from the database while excluding sensitive fields, such as `password` and `refreshToken`, from the response.
+
+9. **Validate User Creation**: Ensure that the user creation process was successful by checking if the created user is present. If not, throw an error indicating an issue with the registration process.
+
+10. **Return Success Response**: If all steps succeed, return a JSON response indicating successful registration, along with the newly created user’s data, using the standardized `APIresponse` format.
