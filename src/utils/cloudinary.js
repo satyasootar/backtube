@@ -3,7 +3,7 @@ import fs from "fs"
 
 
 cloudinary.config({ 
-  cloud_name: "satyasootar",   //need to fit
+  cloud_name: "satyasootar",   //need to fix 
   api_key: "563834866429569", 
   api_secret: "E1-n02mbmLT9Bnr3VZF7OjvlREM"
 });
